@@ -1,37 +1,29 @@
 # MobileGPS_MPY
 
-#### 介绍
+## 介绍
 MicroPython的MobileGPS程序，实现OLED + LCD1602的位置坐标、时间、高度、航迹信息等的实时输出
 
-#### 软件架构
-软件架构说明
+## 软件架构
+MicroPython + Raspberry PICO
 
+引用第三方库 
+|Package|Function|
+|---|---|
+|micropyGPS|解析GPS的NMEA 0183报文|
+|ssd1306|OLED(I2C)驱动|
+|lcd_api|LCD1602(I2C)驱动|
+|pico_i2c_lcd|LCD1602(I2C)驱动|
 
-#### 安装教程
+## 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+推荐使用Thony，如果使用VisualCode，可以从Thony的安装目录里找到Pico的官方库函数放在项目根目录下即可实现代码高亮和自动补全，但是不能自动上传和调试。
 
-#### 使用说明
+MPY开机自动运行```main.py```程序
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```my_gps```对象创建前必须完成外部设备的初始化操作，而且创建前必须延时，否则有几率开机直接停止运行（原因未知，可能这就是靠BUG运行起来的）
 
-#### 参与贡献
+## 已知问题
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+开机搜星正常稳定运行后数据刷新频率不正常，时间不同步，有的时候会出现秒数跳跃的情况。
 
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+运行过程中I2C线接触不好程序会直接停止运行，暂不支持热重启，只能断电重启。
